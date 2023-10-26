@@ -3,7 +3,7 @@
     <LayoutFeatures />
     <LayoutHeader fixed v-if="getShowFullHeaderRef" />
     <Layout :class="[layoutClass]">
-      <LayoutSideBar v-if="getShowSidebar || getIsMobile" />
+      <LayoutSideBar v-if="false" />
       <Layout :class="`${prefixCls}-main`">
         <LayoutMultipleHeader />
         <LayoutContent />

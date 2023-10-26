@@ -6,7 +6,7 @@
   <div class="anticon" :class="getAppLogoClass" @click="goHome">
     <img src="../../../assets/images/logo.png" />
     <div class="ml-2 truncate md:opacity-100" :class="getTitleClass" v-show="showTitle">
-      {{ title }}
+      PBI
     </div>
   </div>
 </template>
@@ -54,7 +54,7 @@
   ]);
 
   function goHome() {
-    go(userStore.getUserInfo.homePath || PageEnum.BASE_HOME);
+    go("/pbi/product");
   }
 </script>
 <style lang="less" scoped>

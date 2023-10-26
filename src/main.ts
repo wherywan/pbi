@@ -15,8 +15,10 @@ import { initAppConfigStore } from '@/logics/initAppConfig';
 import { router, setupRouter } from '@/router';
 import { setupRouterGuard } from '@/router/guard';
 import { setupStore } from '@/store';
+import 'element-plus/dist/index.css'
 
 import App from './App.vue';
+
 
 async function bootstrap() {
   const app = createApp(App);

@@ -2,7 +2,7 @@
   <div :style="getPlaceholderDomStyle" v-if="getIsShowPlaceholderDom"></div>
   <div :style="getWrapStyle" :class="getClass">
     <LayoutHeader v-if="getShowInsetHeaderRef" />
-    <MultipleTabs v-if="getShowTabs" :key="tabStore.getLastDragEndIndex" />
+<!--    <MultipleTabs v-if="getShowTabs" :key="tabStore.getLastDragEndIndex" />-->
   </div>
 </template>
 <script lang="ts">
@@ -20,9 +20,10 @@
   import { useLayoutHeight } from '../content/useContentViewHeight';
   import { useMultipleTabStore } from '/@/store/modules/multipleTab';
 
-  const HEADER_HEIGHT = 48;
+  // const HEADER_HEIGHT = 48;
+  const HEADER_HEIGHT = 30;
 
-  const TABS_HEIGHT = 32;
+  const TABS_HEIGHT = 0;
   export default defineComponent({
     name: 'LayoutMultipleHeader',
     components: { LayoutHeader, MultipleTabs },

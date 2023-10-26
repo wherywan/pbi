@@ -1,26 +1,45 @@
 <template>
-  <div :class="[prefixCls, `${prefixCls}--${theme}`]">
-    <a-breadcrumb :routes="routes">
-      <template #itemRender="{ route, routes: routesMatched, paths }">
-        <Icon :icon="getIcon(route)" v-if="getShowBreadCrumbIcon && getIcon(route)" />
-        <span v-if="!hasRedirect(routesMatched, route)">
-          {{ t(route.name || route.meta.title) }}
-        </span>
-        <router-link v-else to="" @click="handleClick(route, paths, $event)">
-          {{ t(route.name || route.meta.title) }}
-        </router-link>
-      </template>
-    </a-breadcrumb>
+  <div :class="[prefixCls, `${prefixCls}--${theme}`]" style="padding-left: 35%">
+<!--    <a-breadcrumb :routes="routes">-->
+<!--      <template #itemRender="{ route, routes: routesMatched, paths }">-->
+<!--        <Icon :icon="getIcon(route)" v-if="getShowBreadCrumbIcon && getIcon(route)" />-->
+<!--        <span v-if="!hasRedirect(routesMatched, route)">-->
+<!--          {{ t(route.name || route.meta.title) }}-->
+<!--        </span>-->
+<!--        <router-link v-else to="" @click="handleClick(route, paths, $event)">-->
+<!--          {{ t(route.name || route.meta.title) }}-->
+<!--        </router-link>-->
+<!--      </template>-->
+<!--    </a-breadcrumb>-->
+          <a-menu
+            v-model:selectedKeys="current"
+            mode="horizontal"
+            style="background: transparent; color: #999999"
+          >
+            <a-menu-item key="product" @click="menuFn('产品目录', '/pbi/product')" style="padding-left: 30px">
+              <template #icon>
+                <AppstoreOutlined />
+              </template>
+              产品目录
+            </a-menu-item>
+            <a-menu-item key="sale" @click="menuFn('销售目录', '/pbi/sale')" style="padding-left: 15px">
+              <template #icon>
+                <UserOutlined />
+              </template>
+              销售目录
+            </a-menu-item>
+          </a-menu>
   </div>
 </template>
 <script lang="ts">
+  import {AppstoreOutlined,UserOutlined} from '@ant-design/icons-vue';
   import type { RouteLocationMatched } from 'vue-router';
   import { useRouter } from 'vue-router';
   import type { Menu } from '/@/router/types';
 
   import { defineComponent, ref, watchEffect } from 'vue';
 
-  import { Breadcrumb } from 'ant-design-vue';
+  import { Breadcrumb, Menu as test} from 'ant-design-vue';
   import Icon from '@/components/Icon/Icon.vue';
 
   import { useDesign } from '/@/hooks/web/useDesign';
@@ -38,7 +57,12 @@
 
   export default defineComponent({
     name: 'LayoutBreadcrumb',
-    components: { Icon, [Breadcrumb.name]: Breadcrumb },
+    components: { Icon, [Breadcrumb.name]: Breadcrumb,
+      AMenu: test,
+      AMenuItem: test.Item,
+      AppstoreOutlined,
+      UserOutlined,
+    },
     props: {
       theme: propTypes.oneOf(['dark', 'light']),
     },
@@ -144,8 +168,22 @@
       function getIcon(route) {
         return route.icon || route.meta?.icon;
       }
+      const current = ref<string[]>(['product']);
+      const router = useRouter();
+      const menuFn = (menu, path) => {
+        // debugger
+        if (menu) {
+          // localStorage.setItem('menu', menu);
+          // getMenus();
+          // 跳转
+          router.push({
+            path,
+          });
+        }
+      };
 
-      return { routes, t, prefixCls, getIcon, getShowBreadCrumbIcon, handleClick, hasRedirect };
+
+      return { routes, t, prefixCls, getIcon, getShowBreadCrumbIcon, handleClick, hasRedirect,menuFn,current};
     },
   });
 </script>
@@ -156,6 +194,7 @@
     display: flex;
     align-items: center;
     padding: 0 8px;
+
 
     .ant-breadcrumb-link {
       .anticon {
@@ -200,5 +239,12 @@
         color: rgb(255 255 255 / 80%);
       }
     }
+  }
+  .vben-layout-breadcrumb {
+    // width: 86%;
+    min-width: 700px;
+  }
+  .ant-menu-root {
+    width: 100%;
   }
 </style>

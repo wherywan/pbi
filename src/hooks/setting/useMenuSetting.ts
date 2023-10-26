@@ -26,6 +26,7 @@ export function useMenuSetting() {
   const getMenuType = computed(() => appStore.getMenuSetting.type);
 
   const getMenuMode = computed(() => appStore.getMenuSetting.mode);
+  // const getMenuMode = computed(() => MenuModeEnum.HORIZONTAL);
 
   const getMenuFixed = computed(() => appStore.getMenuSetting.fixed);
 

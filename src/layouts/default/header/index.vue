@@ -16,37 +16,39 @@
         :theme="getHeaderTheme"
         :sider="false"
       />
-      <LayoutBreadcrumb v-if="getShowContent && getShowBread" :theme="getHeaderTheme" />
+      <LayoutBreadcrumb v-if="true" :theme="getHeaderTheme" />
     </div>
     <!-- left end -->
 
     <!-- menu start -->
-    <div v-if="getShowTopMenu && !getIsMobile" :class="`${prefixCls}-menu`">
-      <LayoutMenu
-        :isHorizontal="true"
-        :theme="getHeaderTheme"
-        :splitType="getSplitType"
-        :menuMode="getMenuMode"
-      />
-    </div>
+<!--    <div v-if="getShowTopMenu && !getIsMobile" :class="`${prefixCls}-menu`">-->
+<!--      <LayoutMenu-->
+<!--        v-if="false"-->
+<!--        :isHorizontal="true"-->
+<!--        :theme="getHeaderTheme"-->
+<!--        :splitType="getSplitType"-->
+<!--        :menuMode="getMenuMode"-->
+<!--      />-->
+<!--    </div>-->
+
     <!-- menu-end -->
 
     <!-- action  -->
     <div :class="`${prefixCls}-action`">
-      <AppSearch v-if="getShowSearch" :class="`${prefixCls}-action__item `" />
+      <AppSearch v-if="false" :class="`${prefixCls}-action__item `" />
 
       <ErrorAction v-if="getUseErrorHandle" :class="`${prefixCls}-action__item error-action`" />
 
-      <Notify v-if="getShowNotice" :class="`${prefixCls}-action__item notify-item`" />
+      <Notify v-if="false" :class="`${prefixCls}-action__item notify-item`" />
 
-      <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`" />
+      <FullScreen v-if="false" :class="`${prefixCls}-action__item fullscreen-item`" />
 
-      <AppLocalePicker
-        v-if="getShowLocalePicker"
-        :reload="true"
-        :showText="false"
-        :class="`${prefixCls}-action__item`"
-      />
+<!--      <AppLocalePicker-->
+<!--        v-if="getShowLocalePicker"-->
+<!--        :reload="true"-->
+<!--        :showText="false"-->
+<!--        :class="`${prefixCls}-action__item`"-->
+<!--      />-->
 
       <UserDropDown :theme="getHeaderTheme" />
 
@@ -56,7 +58,7 @@
 </template>
 <script lang="ts" setup>
   import { Layout } from 'ant-design-vue';
-  import { computed, unref } from 'vue';
+  import {computed, ref, unref} from 'vue';
 
   import { AppLocalePicker, AppLogo, AppSearch } from '@/components/Application';
   import { SettingButtonPositionEnum } from '@/enums/appEnum';
@@ -107,6 +109,7 @@
   const { getShowLocalePicker } = useLocale();
 
   const { getIsMobile } = useAppInject();
+  const current = ref<string[]>(['platform']);
 
   const getHeaderClass = computed(() => {
     const theme = unref(getHeaderTheme);

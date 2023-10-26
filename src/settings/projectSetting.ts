@@ -16,10 +16,10 @@ const primaryColor = '#0960bd';
 // ! You need to clear the browser cache after the change
 const setting: ProjectConfig = {
   // Whether to show the configuration button
-  showSettingButton: true,
+  showSettingButton: false,
 
   // Whether to show the theme switch button
-  showDarkModeToggle: true,
+  showDarkModeToggle: false,
 
   // `Settings` button position
   settingButtonPosition: SettingButtonPositionEnum.AUTO,
@@ -101,7 +101,7 @@ const setting: ProjectConfig = {
     // Menu mode
     mode: MenuModeEnum.INLINE,
     // Menu type
-    type: MenuTypeEnum.SIDEBAR,
+    type: MenuTypeEnum.TOP_MENU,
     // Menu theme
     theme: ThemeEnum.DARK,
     // Split menu
