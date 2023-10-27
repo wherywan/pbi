@@ -50,7 +50,7 @@
 <!--        :class="`${prefixCls}-action__item`"-->
 <!--      />-->
 
-      <UserDropDown :theme="getHeaderTheme" />
+<!--      <UserDropDown :theme="getHeaderTheme" />-->
 
       <SettingDrawer v-if="getShowSetting" :class="`${prefixCls}-action__item`" />
     </div>
