@@ -14,7 +14,12 @@
       </div>
       <div class="lg:w-7/10 w-full enter-y">
         <Card class="!my-4 enter-y" :loading="loading">
-          右侧信息
+          <el-tabs type="border-card">
+            <el-tab-pane label="基本信息">User</el-tab-pane>
+            <el-tab-pane label="规格参数">Config</el-tab-pane>
+            <el-tab-pane label="拓展参数">Role</el-tab-pane>
+            <el-tab-pane label="文档内容">Task</el-tab-pane>
+          </el-tabs>
         </Card>
 <!--        <QuickNav :loading="loading" class="enter-y" />-->
 
@@ -31,7 +36,7 @@
   import { ref } from 'vue';
   import { Card } from 'ant-design-vue';
   import { PageWrapper } from '/@/components/Page';
-  import { ElTree } from 'element-plus';
+  import { ElTree,ElTabs,ElTabPane} from 'element-plus';
   import { defineComponent } from 'vue';
   import { BasicTree } from '/@/components/Tree';
   import { CollapseContainer } from '/@/components/Container/index';
